@@ -9,6 +9,7 @@ def clean_student_performance(data):
     for school in data.iloc[:, 0]:
         if (school != "GP" and school != "MS"):
             print(school)
+    
             
     for sex in data.iloc[:, 1]:
         if (sex != "F" and sex != "M"):
@@ -71,7 +72,7 @@ def clean_student_performance(data):
         if (not isinstance(absences, int) or absences < 0 or absences > 93):
             print(absences)
 
-    for index, row in math.iloc[:, 31:33].iterrows():
+    for index, row in data.iloc[:, 31:33].iterrows():
         for prnt_educ in row:
             if prnt_educ not in range(0, 21):
                 print(prnt_educ)
