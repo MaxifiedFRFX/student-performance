@@ -26,9 +26,7 @@ pd.set_option('display.max_columns', 8)
 
 math = pd.read_csv('student/student-mat.csv', delimiter=';')
 portuguese = pd.read_csv('student/student-por.csv', delimiter=';')
-dummy_testing_data = pd.read_csv("student/dummy-testing-data-2.csv", delimiter = ';')
 
-cleaner.clean_student_performance(dummy_testing_data)
 cleaner.clean_student_performance(math)
 cleaner.clean_student_performance(portuguese)
 
