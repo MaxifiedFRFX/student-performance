@@ -22,21 +22,33 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
 
+pd.set_option('display.max_columns', None)
+
 math = pd.read_csv('student/student-mat.csv', delimiter=';')
 portuguese = pd.read_csv('student/student-por.csv', delimiter=';')
 
-print(math.head)
+print(math.head())
 print(portuguese.head())
-
-pd.set_option('display.max_columns', None)
 
 for school in math.iloc[:, 0]:
     if (school != "GP" and school != "MS"):
         print(school)
         
-for school in math.iloc[:, 1]:
-    if (school != "F" and school != "M"):
-        print(school)
+for sex in math.iloc[:, 1]:
+    if (sex != "F" and sex != "M"):
+        print(sex)
+
+for age in math.iloc[:, 2]:
+    if (not isinstance(age, int) or age < 15 or age > 22):
+        print(age)
+        
+for address in math.iloc[:, 3]:
+    if (address != "U" and address != "R"):
+        print(address)
+
+for famsize in math.iloc[:, 4]:
+    if (famsize != "LE3" and famsize != "GT3"):
+        print(famsize)
 
 # =============================================================================
 # X = data.drop(4,axis=1).values
