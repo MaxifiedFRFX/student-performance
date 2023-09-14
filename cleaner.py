@@ -36,5 +36,38 @@ def clean_student_performance(data):
                 print(prnt_educ)
                 
     for index, row in data.iloc[:, 8:10].iterrows():
-        for prnt_educ in row:
-            None
+        for job in row:
+            if (job != "teacher" and job != "health" and job != "services" and job != "at_home" and job != "other"):
+                print(job)
+                
+    for reason in data.iloc[:, 10]:
+        if (reason != "home" and reason != "other" and reason != "reputation" and reason != "course"):
+            print(reason)
+            
+    for guardian in data.iloc[:, 11]:
+        if (guardian != "mother" and guardian != "father" and guardian != "other"):
+            print(guardian)
+            
+    for index, row in data.iloc[:, 12:14].iterrows():
+        for rng1_4 in row:
+            if (not isinstance(rng1_4, int) or rng1_4 < 1 or rng1_4 > 4):
+                print(rng1_4)
+    
+    for failure in data.iloc[:, 14]:
+        if (not isinstance(failure, int) or failure < 0 or failure > 4):
+            print(failure)
+        
+    for index, row in data.iloc[:, 15:23].iterrows():
+        for binary in row:
+            if (binary != "yes" and binary != "no"):
+                print(binary)
+                
+    for index, row in data.iloc[:, 23:29].iterrows():
+        for rng1_5 in row:
+            if (not isinstance(rng1_5, int) or rng1_5 < 1 or rng1_5 > 5):
+                print(prnt_educ)
+    
+    for absences in data.iloc[:, 29]:
+        if (not isinstance(absences, int) or absences < 0 or absences > 93):
+            print(absences)
+                
