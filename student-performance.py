@@ -28,12 +28,17 @@ pd.set_option('display.max_columns', None)
 math = pd.read_csv('student/student-mat.csv', delimiter=';')
 portuguese = pd.read_csv('student/student-por.csv', delimiter=';')
 
-print(math.head())
-print(portuguese.head())
+# print(math.head())
+# print(portuguese.head())
 
-cleaner.clean_student_performance(math);
-cleaner.clean_student_performance(portuguese);
+cleaner.clean_student_performance(math)
+cleaner.clean_student_performance(portuguese)
+for index, row in math.iloc[:, 31:33].iterrows():
+    for prnt_educ in row:
+        if prnt_educ not in range(0, 21):
+            print(prnt_educ)
 
+# print(math.iloc[:,3])
 
 
 
