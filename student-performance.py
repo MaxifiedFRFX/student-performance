@@ -13,6 +13,7 @@ Created on Thu Sep  7 19:27:13 2023
 """
 
 import pandas as pd
+import cleaner
 from sklearn.model_selection import train_test_split
 from sklearn import tree
 from matplotlib import pyplot as plt
@@ -30,25 +31,11 @@ portuguese = pd.read_csv('student/student-por.csv', delimiter=';')
 print(math.head())
 print(portuguese.head())
 
-for school in math.iloc[:, 0]:
-    if (school != "GP" and school != "MS"):
-        print(school)
-        
-for sex in math.iloc[:, 1]:
-    if (sex != "F" and sex != "M"):
-        print(sex)
+cleaner.clean_student_performance(math);
+cleaner.clean_student_performance(portuguese);
 
-for age in math.iloc[:, 2]:
-    if (not isinstance(age, int) or age < 15 or age > 22):
-        print(age)
-        
-for address in math.iloc[:, 3]:
-    if (address != "U" and address != "R"):
-        print(address)
 
-for famsize in math.iloc[:, 4]:
-    if (famsize != "LE3" and famsize != "GT3"):
-        print(famsize)
+
 
 # =============================================================================
 # X = data.drop(4,axis=1).values
