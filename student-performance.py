@@ -22,8 +22,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
 
-math = pd.read_csv('student/student-mat.csv')
-portuguese = pd.read_csv('student/student-por.csv')
+math = pd.read_csv('student/student-mat.csv', delimiter=';')
+portuguese = pd.read_csv('student/student-por.csv', delimiter=';')
 print(math)
 
 # =============================================================================
