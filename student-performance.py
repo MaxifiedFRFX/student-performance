@@ -24,7 +24,19 @@ from sklearn.neural_network import MLPClassifier
 
 math = pd.read_csv('student/student-mat.csv', delimiter=';')
 portuguese = pd.read_csv('student/student-por.csv', delimiter=';')
-print(math)
+
+print(math.head)
+print(portuguese.head())
+
+pd.set_option('display.max_columns', None)
+
+for school in math.iloc[:, 0]:
+    if (school != "GP" and school != "MS"):
+        print(school)
+        
+for school in math.iloc[:, 1]:
+    if (school != "F" and school != "M"):
+        print(school)
 
 # =============================================================================
 # X = data.drop(4,axis=1).values
