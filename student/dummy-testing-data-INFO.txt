@@ -1,0 +1,15 @@
+the first 2 rows in "dummy-testing-data-1.csv" not including the labels (headers or whatever you want to call them) are full of mostly invalid data 
+with some valid data sprinkled in. The next 3-5 rows are completely correct rows and exist to make sure that we can test for "false positives" don't 
+occur (correct rows are deleted)
+
+"dummy-testing-data-2.csv", on the other hand, All the following rows are correct with the exception that one piece of data is wrong in each row. Such that 
+we can ensure that we can find invalid data for each label when testing our cleaner.
+basically:
+row 6 has one piece of invalid data in school,
+row 7 has one piece of invalid data in sex,
+row 8 has one piece of invalid data in age,
+and so on
+.
+.
+.
+a single completely valid row exists at the end exists to test for false positives.
