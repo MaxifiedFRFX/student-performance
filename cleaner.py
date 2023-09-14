@@ -70,4 +70,10 @@ def clean_student_performance(data):
     for absences in data.iloc[:, 29]:
         if (not isinstance(absences, int) or absences < 0 or absences > 93):
             print(absences)
+    
+    for index, row in data.iloc[:, 30:33].iterrows():
+        for prnt_educ in row:
+            if prnt_educ not in range(0, 21):
+                print(prnt_educ)
+
                 
