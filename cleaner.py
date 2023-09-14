@@ -43,12 +43,9 @@ def clean_student_performance(data):
     
     for index, row in data.iloc[:, 6:8].iterrows():
         for prnt_educ in row:
-            print(f"{row}")
-        # print(data.iloc[:, 6:8])
-        # for prnt_educ in row:
-        #     if (not isinstance(prnt_educ, int) or prnt_educ < 0 or prnt_educ > 4):
-        #         print("invalid prnt_educ: " + prnt_educ)
-        #         data = data.drop(index)
+            if (not isinstance(prnt_educ, int) or prnt_educ < 0 or prnt_educ > 4):
+                print("invalid prnt_educ: " + prnt_educ)
+                data = data.drop(index)
 
     # for index, row in data.iloc[:, 8:10].items():
     #     for job in row:
