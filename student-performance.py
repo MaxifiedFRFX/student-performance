@@ -16,8 +16,11 @@ import pandas as pd
 import cleaner
 import knn
 import dt
+import lr
+import svm
+import ann
 from sklearn.model_selection import train_test_split
-from sklearn import linear_model, preprocessing
+from sklearn import preprocessing
 
 pd.set_option('display.max_columns', 8)
 
@@ -35,14 +38,19 @@ for column_name, column_data in portuguese.items():
     if column_data.dtype != "int64":
         portuguese[column_name] = le.fit_transform(list(portuguese[column_name]))
 
-labels = ["F - Poor (Mau)", "F - Poor (Mediocre)", "C - Sufficient", "B - Good", "A - Very Good", "A+ - Excellent"]
-bins = [-1, 6, 9, 13, 15, 17, 20]
+labels = ["F - Poor (Mau)", "F - Poor (Mediocre)", "C - Sufficient", "B - Good", "A - Very Good"]
+bins = [-1, 6, 9, 13, 15, 20]
 math['bins'] = pd.cut(math['G3'], bins=bins, labels=labels)
 portuguese['bins'] = pd.cut(portuguese['G3'], bins=bins, labels=labels)
 
-print("-----------------------Head of Math Data Set-----------------------")
+print("=======================Count how many are in math grade range=======================")
+print(math['bins'].value_counts())
+print("=======================Count how many are in Portugueses grade range=======================")
+print(portuguese['bins'].value_counts())
+
+print("=======================Head of Math Data Set=======================")
 print(math.head())
-print("-----------------------Head of Portuguese Data Set-----------------------")
+print("=======================Head of Portuguese Data Set=======================")
 print(portuguese.head())
 
 math_x = math.iloc[:, :-3].values
@@ -50,11 +58,40 @@ math_y = math.iloc[:, -1].values
 port_x = portuguese.iloc[:, :-3].values
 port_y = portuguese.iloc[:, -1].values
 
-
 math_x_train,math_x_test,math_y_train,math_y_test = train_test_split(math_x,math_y,test_size=0.28,random_state=42,stratify=math_y)
+port_x_train,port_x_test,port_y_train,port_y_test = train_test_split(port_x,port_y,test_size=0.28,random_state=42,stratify=port_y)
 
-print("-----------------------KNN Results-----------------------")
+print("=======================Count how many are in port y test grade range=======================")
+print(port_y_test.value_counts())
+print("=======================Count how many are in port y train  grade range=======================")
+print(port_y_train.value_counts())
+
+print("=======================KNN Results=======================")
+print("------Math Class Dataset------")
 knn.knn(math_x_train, math_x_test, math_y_train, math_y_test)
+print("------Portuguese Class Dataset------")
+knn.knn(port_x_train, port_x_test, port_y_train, port_y_test)
 
-print("-----------------------Decision Tree Results-----------------------")
+print("=======================Decision Tree Results=======================")
+print("------Math Class Dataset------")
 dt.dt(math_x_train, math_x_test, math_y_train, math_y_test)
+print("------Portuguese Class Dataset------")
+dt.dt(port_x_train, port_x_test, port_y_train, port_y_test)
+
+print("=======================Logistic Regression=======================")
+print("------Math Class Dataset------")
+lr.lr(math_x_train, math_x_test, math_y_train, math_y_test)
+print("------Portuguese Class Dataset------")
+lr.lr(port_x_train, port_x_test, port_y_train, port_y_test)
+
+print("=======================Support Vector Machines=======================")
+print("------Math Class Dataset------")
+svm.svm(math_x_train, math_x_test, math_y_train, math_y_test)
+print("------Portuguese Class Dataset------")
+svm.svm(port_x_train, port_x_test, port_y_train, port_y_test)
+
+print("=======================Multi-layer Preceptron=======================")
+print("------Math Class Dataset------")
+ann.ann(math_x_train, math_x_test, math_y_train, math_y_test)
+print("------Portuguese Class Dataset------")
+ann.ann(port_x_train, port_x_test, port_y_train, port_y_test)
