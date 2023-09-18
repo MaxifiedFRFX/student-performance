@@ -38,8 +38,8 @@ for column_name, column_data in portuguese.items():
     if column_data.dtype != "int64":
         portuguese[column_name] = le.fit_transform(list(portuguese[column_name]))
 
-labels = ["F - Poor (Mau)", "F - Poor (Mediocre)", "C - Sufficient", "B - Good", "A - Very Good"]
-bins = [-1, 6, 9, 13, 15, 20]
+labels = ["F - Poor", "C - Sufficient", "B/A - Good"]
+bins = [-1, 9, 13, 20]
 math['bins'] = pd.cut(math['G3'], bins=bins, labels=labels)
 portuguese['bins'] = pd.cut(portuguese['G3'], bins=bins, labels=labels)
 
