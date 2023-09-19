@@ -30,6 +30,7 @@ portuguese = pd.read_csv('student/student-por.csv', delimiter=';')
 cleaner.clean_student_performance(math)
 cleaner.clean_student_performance(portuguese)
 
+# CLEANING THE DATA
 le = preprocessing.LabelEncoder()
 for column_name, column_data in math.items():
     if column_data.dtype != "int64":
@@ -43,6 +44,7 @@ bins = [-1, 9, 13, 20]
 math['bins'] = pd.cut(math['G3'], bins=bins, labels=labels)
 portuguese['bins'] = pd.cut(portuguese['G3'], bins=bins, labels=labels)
 
+# PRINTING SOME INFO
 print("=======================Count how many are in math grade range=======================")
 print(math['bins'].value_counts())
 print("=======================Count how many are in Portugueses grade range=======================")
@@ -53,11 +55,13 @@ print(math.head())
 print("=======================Head of Portuguese Data Set=======================")
 print(portuguese.head())
 
+# APPLYING THE FEATURES TO THE X VARIABLES, AND APPLYING THE LABELS TO THE Y VARIABLES
 math_x = math.iloc[:, :-3].values
 math_y = math.iloc[:, -1].values
 port_x = portuguese.iloc[:, :-3].values
 port_y = portuguese.iloc[:, -1].values
 
+# SPLITTING DATA SET INTO TRAINING AND TESTING DATA SETS
 math_x_train,math_x_test,math_y_train,math_y_test = train_test_split(math_x,math_y,test_size=0.28,random_state=42,stratify=math_y)
 port_x_train,port_x_test,port_y_train,port_y_test = train_test_split(port_x,port_y,test_size=0.28,random_state=42,stratify=port_y)
 
@@ -66,6 +70,7 @@ print(port_y_test.value_counts())
 print("=======================Count how many are in port y train  grade range=======================")
 print(port_y_train.value_counts())
 
+# TRAINING ALGORITHMS AND PRESENTING THEIR RESULTS
 print("=======================KNN Results=======================")
 print("------Math Class Dataset------")
 knn.knn(math_x_train, math_x_test, math_y_train, math_y_test)
